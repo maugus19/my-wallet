@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
   const result = await triggerCallBack();
-  console.log(result);
   return NextResponse.json(result);
 }
 
@@ -28,7 +27,9 @@ async function triggerCallBack() {
       method: 'GET',
       mode: 'cors',
       headers: {
-        'Authorization': `Bearer ${creds.access_token}`
+        'Accept': '*/*',
+        'Authorization': `Bearer ${creds.access_token}`,
+        'User-Agent': 'Thunder Client (https://www.thunderclient.com)'
       }
     });
 
